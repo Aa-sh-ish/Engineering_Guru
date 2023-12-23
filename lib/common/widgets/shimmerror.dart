@@ -14,6 +14,7 @@ class ShimmerError extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
+      period: const Duration(milliseconds: 3000),
       baseColor: basecolor,
       highlightColor: highlightcolor,
       child: respose,
