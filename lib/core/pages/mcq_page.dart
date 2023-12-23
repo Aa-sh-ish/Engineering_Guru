@@ -19,7 +19,7 @@ class ComputerMCQ extends ConsumerStatefulWidget {
 class _ComputerMCQState extends ConsumerState<ComputerMCQ> {
   String values = "";
   String selectedOption = '';
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
 
   int rightnumber = 0;
   int wrongnumber = 0;
@@ -171,7 +171,7 @@ class _ComputerMCQState extends ConsumerState<ComputerMCQ> {
 }
 
 class MCQTile extends StatelessWidget {
-  MCQTile({
+  const MCQTile({
     super.key,
     required this.text,
   });

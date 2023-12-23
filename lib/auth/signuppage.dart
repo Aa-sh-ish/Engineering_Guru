@@ -1,15 +1,14 @@
-import 'package:engineering_guru/auth/auth.dart';
+import 'package:engineering_guru/auth/authservices.dart';
 import 'package:engineering_guru/common/utils/constants.dart';
 import 'package:engineering_guru/common/widgets/appstyle.dart';
 import 'package:engineering_guru/common/widgets/form_container_widget.dart';
 import 'package:engineering_guru/common/widgets/heightspacer.dart';
 import 'package:engineering_guru/common/widgets/reusabletext.dart';
-import 'package:engineering_guru/pages/homepage.dart';
-import 'package:engineering_guru/pages/loginpage.dart';
+import 'package:engineering_guru/core/pages/homepage.dart';
+import 'package:engineering_guru/auth/loginpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -21,17 +20,17 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   final FirebaseAuthService _auth = FirebaseAuthService();
 
-  TextEditingController _usernameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   bool isSigningUp = false;
 
   @override
   void dispose() {
-    _usernameController.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
+    _usernameController.clear();
+    _emailController.clear();
+    _passwordController.clear();
     super.dispose();
   }
 
@@ -39,41 +38,43 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-       backgroundColor: AppConst.kwhite,
+      backgroundColor: AppConst.kwhite,
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 50),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 50),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-        
-                Image(image: AssetImage("assets/logo.png"),),
-                ReusableText(text: "Sign Up", textstyle: appstyle(50, AppConst.knavypurpledark, FontWeight.bold)),
-               HeightSpace(height: 30),
+                const Image(
+                  image: AssetImage("assets/logo.png"),
+                ),
+                ReusableText(
+                    text: "Sign Up",
+                    textstyle: appstyle(
+                        50, AppConst.knavypurpledark, FontWeight.bold)),
+                const HeightSpace(height: 30),
                 FormContainerWidget(
                   controller: _usernameController,
                   hintText: "Username",
                   isPasswordField: false,
                 ),
-                 HeightSpace(height: 10),
+                const HeightSpace(height: 10),
                 FormContainerWidget(
                   controller: _emailController,
                   hintText: "Email",
                   isPasswordField: false,
                 ),
-                HeightSpace(height: 10),
+                const HeightSpace(height: 10),
                 FormContainerWidget(
                   controller: _passwordController,
                   hintText: "Password",
                   isPasswordField: true,
                 ),
-                HeightSpace(height: 30),
+                const HeightSpace(height: 30),
                 GestureDetector(
-                  onTap:  (){
+                  onTap: () {
                     _signUp();
-                    
-        
                   },
                   child: Container(
                     width: double.infinity,
@@ -83,19 +84,24 @@ class _SignUpPageState extends State<SignUpPage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Center(
-                        child: isSigningUp ? CircularProgressIndicator(color: Colors.white,):Text(
-                      "Sign Up",
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
-                    )),
+                        child: isSigningUp
+                            ? const CircularProgressIndicator(
+                                color: Colors.white,
+                              )
+                            : const Text(
+                                "Sign Up",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              )),
                   ),
                 ),
-                HeightSpace(height: 20),
+                const HeightSpace(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Already have an account?"),
-                    SizedBox(
+                    const Text("Already have an account?"),
+                    const SizedBox(
                       width: 5,
                     ),
                     GestureDetector(
@@ -103,10 +109,10 @@ class _SignUpPageState extends State<SignUpPage> {
                           Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => LoginPage()),
+                                  builder: (context) => const LoginPage()),
                               (route) => false);
                         },
-                        child: Text(
+                        child: const Text(
                           "Login",
                           style: TextStyle(
                               color: Colors.blue, fontWeight: FontWeight.bold),
@@ -122,10 +128,9 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   void _signUp() async {
-
-setState(() {
-  isSigningUp = true;
-});
+    setState(() {
+      isSigningUp = true;
+    });
 
     String username = _usernameController.text;
     String email = _emailController.text;
@@ -133,15 +138,16 @@ setState(() {
 
     User? user = await _auth.signUpWithEmailAndPassword(email, password);
 
-setState(() {
-  isSigningUp = false;
-});
+    setState(() {
+      isSigningUp = false;
+    });
     if (user != null) {
       Fluttertoast.showToast(msg: "User is successfully created");
-    Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) =>   HomePage()),
-  );
+      // ignore: use_build_context_synchronously
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const HomePage()),
+      );
     } else {
       Fluttertoast.showToast(msg: "Some error happend");
     }

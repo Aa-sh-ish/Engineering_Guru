@@ -11,7 +11,6 @@ class ReusableText extends StatelessWidget {
     return Text(
       text,
       textAlign: TextAlign.left,
-      softWrap: false,
       overflow: TextOverflow.fade,
       style: textstyle,
     );

@@ -88,7 +88,7 @@ class _CheckPageState extends ConsumerState<CheckPage> {
               mcq.when(data: (mcq) {
                 return Expanded(
                     child: ListView.builder(
-                  itemCount: 5,
+                  itemCount: 10,
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   physics: const BouncingScrollPhysics(),
