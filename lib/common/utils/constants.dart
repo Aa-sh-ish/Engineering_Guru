@@ -15,6 +15,7 @@ class AppConst {
   static const Color knavypurple3 = Color(0xff756BC1);
   static const Color knavypurple4 = Color(0xff59548E);
   static const Color knavypurpledark = Color(0xff373366);
+  static const Color kwhite = Color(0xffD9D9D9);
 
   static double kWidth = 375.w;
   static double kHeight = 825.h;
