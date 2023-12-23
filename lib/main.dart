@@ -1,12 +1,14 @@
-import 'package:engineering_guru/core/pages/checkPage.dart';
-import 'package:engineering_guru/core/pages/mcq_page.dart';
+import 'package:engineering_guru/pages/homepage.dart';
+import 'package:engineering_guru/pages/loginpage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shimmer/main.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
-  runApp(const ProviderScope(child: MyApp()));
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

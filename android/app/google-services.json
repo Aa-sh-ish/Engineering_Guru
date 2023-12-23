@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "895858694214",
+    "project_id": "engineering-guru-f8521",
+    "storage_bucket": "engineering-guru-f8521.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:895858694214:android:34ee1da71700049809d247",
+        "android_client_info": {
+          "package_name": "com.example.engineering_guru"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVYQVQKkILnVdeHa53O9nCKfrcTNxfIxI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
